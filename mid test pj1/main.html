@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<style>
+#header {
+    color:white;
+    height:45px;
+    text-align:center;
+    background-color:#FF5809
+}
+#nav {
+    background-color:white;
+    line-height:30px;
+    height:420px;
+    background-size:100% 	      
+}
+#footer {
+    background-color:black;
+    color:white;
+    clear:both;
+    text-align:center;	 	 
+   background-size:100% ;
+}
+#total{
+         background-repeat:no-repeat;
+         background-size:auto ; 
+          height:480px;
+    }
+#hidebg { position:absolute;left:0px;top:0px;
+      background-color:#000;
+      width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+      filter:alpha(opacity=60);  /*设置透明度为60%*/
+      opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+      display:none; /* http://www.jb51.net */
+      z-Index:2;}
+   #hidebox { position:absolute;width:600px;height:350px;top:200px;left:30%;background-color:	#0000E3;display:none;;z-Index:3;text-align:left}
+   #content { text-align:center;cursor:pointer;z-Index:1;}
+#hidebg2 { position:absolute;left:0px;top:0px;
+      background-color:#000;
+      width:100%;  /*宽度设置为100%，这样才能使隐藏背景层覆盖原页面*/
+      filter:alpha(opacity=60);  /*设置透明度为60%*/
+      opacity:0.6;  /*非IE浏览器下设置透明度为60%*/
+      display:none; /* http://www.jb51.net */
+      z-Index:2;}
+   #hidebox2 { position:absolute;width:400px;height:200px;top:200px;left:30%;background-color:	#0000E3;display:none;;z-Index:3;}
+   #content2 { text-align:center;cursor:pointer;z-Index:1;}
+.three{
+    float:left;
+}
+.box{
+        width: 70px;
+        height: 32px;
+        float: right;
+        background: blue;
+        color: white;
+        text-align: center;
+        line-height: 32px;
+        
+}
+.box2{
+       
+        background: #66B3FF;
+        color: white;    
+}
+.inputlook{
+        width: 160px;
+        border: 1px solid #e2e2e2;
+        height: 30px;
+        float: right;
+        background-image: url(/i/eg_cute.gif);
+        background-repeat: no-repeat;
+        background-size: 25px;
+        background-position:5px center;
+        padding:0 0 0 40px;
+    }
+a{ 
+text-decoration:none;
+} 
+a:hover{
+  background-color:purple;
+}
+.code{  
+background-image:url(111.jpg);  
+font-family:Arial,宋体;  
+font-style:italic;  
+color:green;  
+border:0;  
+padding:2px 3px;  
+letter-spacing:3px;  
+font-weight:bolder;  
+}  
+.unchanged {  
+border:0;  
+}  
+.headline{
+   float:right;
+}
+</style>
+
+<script>
+var curIndex=0;
+var b1=false;
+var b2=false;
+var b3=false;
+var b4=false;
+var b5=false;
+var b6=false;
+var us="abcd";
+var ps="abcde";
+var cps="abcde";
+var eml="abcde";
+var tel="abcde";
+var ads="abcde";
+var yidenglu=false;
+var code;
+function createCode(){   
+code = new Array();  
+var codeLength = 4;//验证码的长度  
+var checkCode = document.getElementById("checkCode");  
+checkCode.value = "";  
+  
+var selectChar = new Array(2,3,4,5,6,7,8,9,'A','B','C','D','E','F','G','H','J','K','L','M','N','P','Q','R','S','T','U','V','W','X','Y','Z');  
+  
+for(var i=0;i<codeLength;i++) {  
+   var charIndex = Math.floor(Math.random()*32);  
+   code +=selectChar[charIndex];  
+}  
+if(code.length != codeLength){  
+   createCode();  
+}  
+checkCode.value = code;  
+}  
+  
+function validate () {  
+var inputCode = document.getElementById("input1").value.toUpperCase();  
+  
+if(inputCode.length <=0) {  
+   alert("请输入验证码！");  
+   return false;  
+}  
+else if(inputCode != code ){  
+   alert("验证码输入错误！");  
+   createCode();  
+   return false;  
+}  
+else {  
+   alert("成功！");  
+   return true;  
+}  
+}  
+function myFunction(){
+	alert("你好，我是一个警告框！");
+}
+function show()  //显示隐藏层和弹出层
+{
+     if(yidenglu==false){
+   var hideobj=document.getElementById("hidebg");
+   hidebg.style.display="block";  
+   hidebg.style.height=document.body.clientHeight+"px";  
+   document.getElementById("hidebox").style.display="block";  
+   }
+   else{
+   alert("登出成功");
+   document.getElementById('zhuce').innerHTML=("注册");
+   document.getElementById('denglu').innerHTML=("登陆" );
+   yidenglu=false;
+   }
+     
+}
+function hide() 
+{
+   document.getElementById("hidebg").style.display="none";
+   document.getElementById("hidebox").style.display="none";
+}
+function show2()  
+{
+   
+   if(yidenglu==false){
+   var hideobj2=document.getElementById("hidebg2");
+   hidebg2.style.display="block";  //显示隐藏层
+   hidebg2.style.height=document.body.clientHeight+"px";  
+   document.getElementById("hidebox2").style.display="block";  
+   }
+   else{
+   to3();
+   }
+}
+function hide2() 
+{
+   document.getElementById("hidebg2").style.display="none";
+   document.getElementById("hidebox2").style.display="none";
+}
+function signin()
+{
+    if(b1==true&&b2==true&&b3==true&&b4==true&&b5==true&&b6==true){
+   alert("注册成功！");
+   us=document.getElementById("username").value;
+   ps=document.getElementById("password1").value;
+   cps=document.getElementById("confirm").value;
+   eml=document.getElementById("email").value;
+   tel=document.getElementById("mobile").value;
+   ads=document.getElementById("address").value;
+   hide();
+}
+    else{
+    alert("您有部分信息的填写不符合要求");
+}
+}
+function signup(){
+ var x=document.getElementById("username2").value;
+ var y=document.getElementById("password2").value;
+ var z = document.getElementById("input1").value.toUpperCase(); 
+ if(x==us&&y==ps&&z==code){
+      alert("登陆成功");
+      hide2();
+      yidenglu=true;
+      document.getElementById('zhuce').innerHTML=("登出");
+      document.getElementById('denglu').innerHTML=("欢迎你"+ us );
+    }
+  else{
+     alert("用户不存在或者密码错误,或验证码输入有误");
+   }
+}
+function Check1(){
+  var x=document.getElementById("username").value
+  var reg1 = /^[a-zA-Z]+$/
+  var reg2 = /^[0-9]+$/
+   if(reg1.test(x)==false&&reg2.test(x)==false&&x.length>5){
+     document.getElementById('t1').innerHTML=(" ");
+     b1=true;
+    }
+   else{
+   document.getElementById('t1').innerHTML=("用户名不能纯数字纯字母，且不能小于6位");
+     b1=false;
+   }
+} 
+function Check2(){
+  var x=document.getElementById("username").value
+   var y=document.getElementById("password1").value
+   if(x!=y&&y.length>5&&x.length>0){
+       document.getElementById('t2').innerHTML=(" ");
+     b2=true;
+      }
+   else{
+       document.getElementById('t2').innerHTML=("密码不能与用户名相同，且不能小于6位");
+      b2=false;
+       }
+}
+function Check3(){
+  var x=document.getElementById("password1").value
+   var y=document.getElementById("confirm").value
+   if(x==y&&x.length>5){
+       document.getElementById('t3').innerHTML=(" ")
+       b3=true;
+      }
+   else{
+       document.getElementById('t3').innerHTML=("此次输入与密码不一致,或密码设置不符合要求");
+       b3=false;
+       }
+}
+function Check4(){
+      var myreg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+      var x=document.getElementById("email").value
+    if(!myreg.test(x)){
+       document.getElementById('t4').innerHTML=("请输入正确的邮箱");
+      b4=false;
+      }
+     else{
+            document.getElementById('t4').innerHTML=("");
+       b4=true;
+      }
+}
+function Check5(){
+            var y=/^[1][3,4,5,7,8][0-9]{9}$/;
+      var x=document.getElementById("mobile").value
+    if(!y.test(x)){
+       document.getElementById('t5').innerHTML=("请输入正确的手机号");
+      b5=false;
+      }
+     else{
+            document.getElementById('t5').innerHTML=("");
+      b5=true;
+      }
+}
+function Check6(){
+      var x=document.getElementById("address").value
+    if(x.length<1){
+       document.getElementById('t6').innerHTML=("地址不能为空");
+       b6=false;
+      }
+     else{
+            document.getElementById('t6').innerHTML=("");
+       b6=true;
+      }
+}
+function to(){
+     if(yidenglu==false){
+     window.location.href="search.html";  
+      }
+     else{
+      window.location.href="search.html?"+us+"?"+ps+"?"+cps+"?"+eml+"?"+tel+"?"+ads+"?"+yidenglu;
+     }  
+  }   
+function to2(){
+     if(yidenglu==false){
+     window.location.href="detail.html";  
+      }
+     else{
+      window.location.href="detail.html?"+us+"?"+ps+"?"+cps+"?"+eml+"?"+tel+"?"+ads+"?"+yidenglu;
+     }  
+  }  
+function to3(){
+     if(yidenglu==false){
+     window.location.href="personal.html";  
+      }
+     else{
+      window.location.href="personal.html?"+us+"?"+ps+"?"+cps+"?"+eml+"?"+tel+"?"+ads+"?"+yidenglu;
+     }  
+  }  
+function val(){
+  var thisURL = document.URL;  
+  var x=thisURL.split('?')[7];  
+   if(x)
+   {
+    us=thisURL.split('?')[1];
+    ps=thisURL.split('?')[2];
+    cps=thisURL.split('?')[3];
+    eml=thisURL.split('?')[4];
+    tel=thisURL.split('?')[5];
+    ads=thisURL.split('?')[6];
+   document.getElementById('zhuce').innerHTML=("登出");
+   document.getElementById('denglu').innerHTML=("欢迎你"+us );
+    yidenglu=true;
+  }
+   else{
+   }
+}
+</script>
+
+</head>
+
+<body onload="val();createCode()">
+<div id="total" >
+
+<div id="header">
+<a style="font-family:华文彩云;font-size:40px;color:white;float:left;margin-left:5cm"">
+Art Store 
+
+</a>
+
+
+
+<font style="  font-family: '宋体';font-size:30px;float:left;color:yellow;margin-left:20cm">
+
+<a href="#" style="color:yellow">
+首页
+</a>
+
+
+<a onClick="to()" style="cursor:pointer;margin-left:30px" >
+搜索
+</a>
+
+<a onClick="to2()" style="cursor:pointer;margin-left:30px" >
+详情
+</a>
+
+<a href="#" onClick="show()"; id="zhuce" style="color:yellow;cursor:pointer;margin-left:30px">
+注册
+</a>
+
+<a href="#" onClick="show2()"; id="denglu" style="color:yellow;cursor:pointer;margin-left:30px">
+登陆
+</a>
+</font>
+
+</div>
+<div >
+<div id="qy" style="width:1904px;height:480px;overflow:hidden" onMouseOver="qiScrollAmount=0" onmouseout="qiScrollAmount=2">
+<div id="tab1">
+<a onClick="to()" style="cursor:pointer"><img src="1.jpg"></a><a onClick="to()" style="cursor:pointer"><img src="2.jpg" style="margin-top:-5px;"></a><a onClick="to()" style="cursor:pointer"><img src="3.jpg" style="margin-top:-5px;margin-bottom:-5px"></a>
+</div>
+<div id="tab2"></div>
+</div>
+<style>
+#btm{position:absolute;right:0;top:60px;width:12px;height:43px;background:url(http://pigimg.zhongso.com/space/gallery/infoimgs/gc/gcqZj/20100417/2010041716281352947.gif) no-repeat;overflow:hidden;}
+#btm a{display:block;height:22px;}
+#btm a#up:hover{background:url(http://pigimg.zhongso.com/space/gallery/infoimgs/gc/gcqZj/20100417/2010041716281352947.gif) -13px top no-repeat;}
+#btm a#dw:hover{background:url(http://pigimg.zhongso.com/space/gallery/infoimgs/gc/gcqZj/20100417/2010041716281352947.gif) -26px -22px no-repeat;}
+</style>
+<div id="btm" style="display:none"><a id="up" onclick="up()" href="javascript:;" target="_self"></a><a id="dw" onclick="dw()" href="javascript:;" target="_self"></a></div>
+<script>
+var qoMarquee = document.getElementById("qy"); //滚动对象
+var tab1 = document.getElementById("tab1");
+var tab2 = document.getElementById("tab2");
+var qiLineHeight = 480;//单行高度，像素IE
+var qiLineCount = 0; //实际行数
+var qiScrollAmount = 2; //每次滚动高度，像素（速度）
+var speed1=3000;//每次停留时间
+var speed2=1;//滚动速度
+var num=qoMarquee.getElementsByTagName('img').length;//总数
+tab2.innerHTML=tab1.innerHTML;
+var alink=document.getElementById('btm').getElementsByTagName('a');
+for(var i=0;i<alink.length;i++){
+alink[i].onfocus=function(){this.blur();}
+}
+function run() {
+if(qoMarquee.scrollTop==num*qiLineHeight){qoMarquee.scrollTop=0;window.setTimeout( "run()", speed2 );}//重置并接着滚动
+else{
+qoMarquee.scrollTop +=qiScrollAmount;
+if ( qoMarquee.scrollTop % qiLineHeight == 0 ) {window.setTimeout( "run()", speed1 );}//如果满格等待N秒
+else {window.setTimeout( "run()", speed2 );}//正常滚动
+}
+}
+function up(){
+qiScrollAmount = 0;
+var amount=1;
+if(qoMarquee.scrollTop==num*qiLineHeight) qoMarquee.scrollTop=0;
+qoMarquee.scrollTop +=amount;
+if ( qoMarquee.scrollTop % qiLineHeight == 0 ) {amount=0;window.setTimeout( "qiScrollAmount = 2", speed1 );}
+else window.setTimeout( up(), 1 );
+}
+function dw(){
+qiScrollAmount = 0;
+var amount=1;
+if(qoMarquee.scrollTop==0) qoMarquee.scrollTop=num*qiLineHeight;
+qoMarquee.scrollTop -=amount;
+if ( qoMarquee.scrollTop % qiLineHeight == 0 ) {amount=0;window.setTimeout( "qiScrollAmount = 2", speed1 );}
+else window.setTimeout( dw(), 1 );
+}
+window.setTimeout( "run()", speed1 );
+</script>
+</div>
+
+
+
+<div id="hidebg"></div>
+<div id="hidebox" >
+<form name="zhuce">
+</br>
+</br>
+&ensp; &ensp;
+昵称:<input type="text"  id="username" placeholder="昵称" onblur="Check1()"><a id="t1" style="color:red"></a>
+</br>
+</br>
+&ensp; &ensp; 
+密码:<input type="password" id="password1"  placeholder="密码" onblur="Check2()"><a id="t2" style="color:red"></a>
+</br>
+</br>
+确认密码:<input type="password" id="confirm"  placeholder="确认密码" onblur="Check3()"><a id="t3" style="color:red"></a>
+</br>
+</br>
+&ensp; &ensp; 
+邮箱:<input type="text" id="email"  placeholder="邮箱" onblur="Check4()"><a id="t4" style="color:red"></a>
+</br>
+</br>
+&ensp; &ensp; 
+手机:<input type="text" id="mobile"  placeholder="手机" onblur="Check5()"><a id="t5" style="color:red"></a>
+</br>
+</br>
+&ensp; &ensp; 
+地址:<input type="text" id="address"  placeholder="地址" onblur="Check6()"><a id="t6" style="color:red"></a>
+</br>
+</br>
+<button type="button" onclick="signin()" style="margin-left:15%" >注册完毕!</button>
+<button type="button" onClick="hide();" >取消</button>
+</div>
+</form>
+
+
+
+
+
+
+
+
+
+<div id="hidebg2"></div>
+<div id="hidebox2" >
+<form name="denglu">
+</br>
+</br>
+&ensp; &ensp; 
+用户名:<input type="text" id="username2"  placeholder="用户名"> 
+</br>
+</br>
+&ensp; &ensp; 
+密码:     <input type="password" id="password2"   placeholder="密码">
+</br>
+</br>
+<input type="text" id="input1" />  
+<input type="button" id="checkCode" class="code" style="width:60px" onClick="createCode()" /> <a href="#" onClick="createCode()">看不清楚</a> 
+</br>
+<button type="button" onClick="signup();" >登陆</button>
+<button type="button" onClick="hide2();" >取消</button>
+
+</div>
+
+
+
+
+
+
+
+
+</form>
+
+
+
+
+
+</div>
+
+
+<div id="nav" style="margin-top:10px">
+
+<div style="float:left;margin-left:4cm;margin-top:40px">
+<img src="images/artists/square-thumb/5.jpg" style="margin-left:220px" >
+
+<h3 style="line-height:20px;text-align:center"> Portrait of Elenor Toloks</h3>
+ <div style="font-size:15px;line-height:5px;font-style:italic">
+ <p>&nbsp &nbsp Her book is organized Into sections by epochs and fulling</p>
+ <p>&nbsp govermentic at times,the compression of such a long history</p>
+ <p>into the short space makes it hard to digest,but Lancaster stops</p>
+ <p>&nbsp often to recount captivating legends and anecdotes.She seems</p>
+ <p>&nbsp &nbspto have a quote from every writer or thinker who ever visited</p>
+ </div>
+ <p style="line-height:15px;font-size:15px;text-align:center">Naplas or its surroundings</p>
+
+ <button type="button" onClick="to2();"  style="margin-left:210px;background-color:#66B3FF;color:white" >View Details</button> 
+
+
+</div>
+
+<div style="float:left;margin-left:50px;margin-top:40px">
+<img src="images/artists/square-thumb/6.jpg" style="margin-left:220px" >
+
+<h3 style="line-height:20px;text-align:center"> Portrait of Elenor Toloks</h3>
+ <div style="font-size:15px;line-height:5px;font-style:italic">
+ <p>&nbsp &nbsp Her book is organized Into sections by epochs and fulling</p>
+ <p>&nbsp govermentic at times,the compression of such a long history</p>
+ <p>into the short space makes it hard to digest,but Lancaster stops</p>
+ <p>&nbsp often to recount captivating legends and anecdotes.She seems</p>
+ <p>&nbsp &nbspto have a quote from every writer or thinker who ever visited</p>
+ </div>
+ <p style="line-height:15px;font-size:15px;text-align:center">Naplas or its surroundings</p>
+
+ <button type="button" onClick="to2();"  style="margin-left:210px;background-color:#66B3FF;color:white" >View Details</button> 
+
+
+</div>
+
+
+<div style="float:left;margin-left:50px;margin-top:40px">
+<img src="images/artists/square-thumb/8.jpg" style="margin-left:220px" >
+
+<h3 style="line-height:20px;text-align:center"> Portrait of Elenor Toloks</h3>
+ <div style="font-size:15px;line-height:5px;font-style:italic">
+ <p>&nbsp &nbsp Her book is organized Into sections by epochs and fulling</p>
+ <p>&nbsp govermentic at times,the compression of such a long history</p>
+ <p>into the short space makes it hard to digest,but Lancaster stops</p>
+ <p>&nbsp often to recount captivating legends and anecdotes.She seems</p>
+ <p>&nbsp &nbspto have a quote from every writer or thinker who ever visited</p>
+ </div>
+ <p style="line-height:15px;font-size:15px;text-align:center">Naplas or its surroundings</p>
+
+ <button type="button" onClick="to2();"  style="margin-left:210px;background-color:#66B3FF;color:white" >View Details</button> 
+</div>
+
+
+</div>
+
+<div id="footer" style="font-family:华文隶书">
+Produced and maintained by 17ss
+</div>
+
+</body>
+</html>

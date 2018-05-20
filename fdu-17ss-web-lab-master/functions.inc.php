@@ -9,15 +9,36 @@ function generateLink($url, $label, $class) {
 function outputPostRow($number)  {
     
 include("travel-data.inc.php");
-return '<a>asdjfaskdjlf</a>';
+$abc="";
+$abc .="<div class='row'><div class='col-md-4'>";
+$d=${"postId".$number};
+$abc .="<a href='post.php?id=$d' class=''>";
+$d=${"thumb".$number};
+$e=${"title".$number};
+$abc .="<img src='images/$d' alt='$e' class='img-responsive'/>";
+$abc .="</a>";
+$abc .="</div><div class='col-md-8'>";
+$abc .="<h2>$e</h2>";
+$abc .="<div class='details'>Posted by ";
+$d=${"userId".$number};
+$e=${"userName".$number};
+$abc .="<a href='user.php?id=$d' class=''>$e</a>";
+$d=${"date".$number};
+$abc .="<span class='pull-right'>$d</span>";
+$abc .="<p class='ratings'>";
+$d=${"reviewsRating".$number};
+$abc .=constructRating($d);
+$d=${"reviewsNum".$number};
+$abc .=" $d Reviews</p>";
+$d=${"excerpt".$number};
+$abc .="</div><p class=;excerpt;>$d</p>";
+$d=${"postId".$number};
+$abc .="<p><a href='post.php?id=$d' class='btn btn-primary btn-sm'>Read more</a>";
+$abc .="</p></div></div><hr/>";
+echo $abc;
 }
 
 
-/*
-  Function constructs a string containing the <img> tags necessary to display
-  star images that reflect a rating out of 5
-
-*/
 function constructRating($rating) {
     $imgTags = "";
     
@@ -50,25 +71,3 @@ function constructRating($rating) {
 
 
 
-
-
-
-//<div class="row">
-  //<div class="col-md-4">
-   // <a href="post.php?id=1" class="">
-    //<img src="images/8710320515.jpg" alt="Ekklisia Agii Isidori Church" class="img-responsive"/>
-      // </a>
-    // </div><div class="col-md-8"> 
-      // <h2>Ekklisia Agii Isidori Church</h2>
-        //<div class="details">Posted by 
-         //<a href="user.php?id=2" class="">Leonie Kohler</a>
-           //<span class="pull-right">2/8/2017</span>
-             //<p class="ratings"><img src="images/star-gold.svg" width="16" /><img src="images/star-gold.svg" width="16" />
-        //<img src="images/star-gold.svg" width="16" /><img src="images/star-white.svg" width="16" />
-         //<img src="images/star-white.svg" width="16" /> 15 Reviews</p>
-           //         </div><p class="excerpt">At the end of the hot climb up to the top Lycabettus Hill you are greeted with the oasis that is the Ekklisia Agii Isidori church.</p>
-             //     <p><a href="post.php?id=1" class="btn btn-primary btn-sm">Read more</a>
-        //</p>
-       //</div>
-       //</div>
-         //     <hr/>

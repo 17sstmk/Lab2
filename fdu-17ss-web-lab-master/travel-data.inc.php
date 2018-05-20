@@ -9,6 +9,7 @@
   $reviewsNum1 = 15;
   $reviewsRating1 = 3;
   
+
   $postId2 = 3;
   $userId2 = 5;
   $userName2 = "Frantisek  Wichterlova";
@@ -19,7 +20,8 @@
   $reviewsNum2 = 38;
   $reviewsRating2 = 5;  
 
-  $postId3 = 9;
+ 
+ $postId3 = 9;
   $userId3 = 13;
   $userName3 = "Edward Francis";
   $date3 = "10/19/2017";

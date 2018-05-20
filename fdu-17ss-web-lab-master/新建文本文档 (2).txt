@@ -1,0 +1,22 @@
+<html>
+<body>
+
+<input type="text" id="clock" size="35" />
+<script type="text/javascript" src="http://code.jquery.com/jquery-latest.js"></script>
+<script language=javascript>
+var int=self.setInterval("clock()",2000)
+function clock()
+  {
+  $(document).ready(function(){
+             (test());
+              function test(){
+                  alert("aaa");
+
+                  }
+	});
+  }
+</script>
+<button onclick="int=window.clearInterval(int)">Stop interval</button>
+
+</body>
+</html>

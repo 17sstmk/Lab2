@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>动态生成表格</title>
+<style>
+ .dlgReply 
+{ 
+/*display: table-cell; 
+text-align: center;*/ 
+vertical-align: middle; 
+} 
+table 
+{ 
+margin-left: auto; 
+margin-right: auto; 
+} 
+</style>
+
+<script>
+var sl2=1;
+var row;
+var hasdone=0;
+var times=0;
+function show(index) {
+if (index == 1) {
+var div1=document.getElementById("div1");
+div1.innerHTML="";
+var div2=document.getElementById("div2");
+div2.innerHTML="";
+}
+if (index == 2) {
+var div1=document.getElementById("div1");
+div1.innerHTML="";
+var input = document.createElement("input");
+input.setAttribute("type", "text");
+input.setAttribute("placeholder","Table Name");
+input.setAttribute("id","name");
+var input2 = document.createElement("input");
+input2.setAttribute("type", "text");
+input2.setAttribute("placeholder","Columns Numbers");
+input2.setAttribute("id","number");
+input2.setAttribute("onblur","show2()");
+document.getElementById("div1").appendChild(input);
+document.getElementById("div1").appendChild(input2);
+document.getElementById("div1").appendChild(document.createElement("br"))
+}
+if (index == 3) {
+  var div1=document.getElementById("div1");
+div1.innerHTML="";
+   var div2=document.getElementById("div2");
+div2.innerHTML="";
+if(hasdone==1){
+  for( var i=0;i<row;i++){
+  var input = document.createElement("input");
+ input.setAttribute("type", "text");
+ input.setAttribute("placeholder","Attribute");
+ input.setAttribute("id","add"+i);
+ document.getElementById("div2").appendChild(input);
+ }
+  document.getElementById("div2").appendChild(document.createElement("br"))
+var input = document.createElement("button");
+input.innerHTML="Commit";
+input.setAttribute("onclick", "addrow()");
+document.getElementById("div2").appendChild(input);
+}
+
+
+}
+if (index == 4) {
+ var div1=document.getElementById("div1");
+div1.innerHTML="";
+   var div2=document.getElementById("div2");
+div2.innerHTML="";
+if(hasdone==1){
+  for( var i=0;i<row;i++){
+  var input = document.createElement("input");
+ input.setAttribute("type", "text");
+ input.setAttribute("placeholder","Attribute");
+ input.setAttribute("id","delete"+i);
+ document.getElementById("div2").appendChild(input);
+ }
+  document.getElementById("div2").appendChild(document.createElement("br"))
+var input = document.createElement("button");
+input.innerHTML="Commit";
+input.setAttribute("onclick", "deleterow()");
+document.getElementById("div2").appendChild(input);
+}
+
+}
+if (index == 5) {
+alert("5");
+}
+
+}
+
+function show2(){
+   var div2=document.getElementById("div2");
+div2.innerHTML="";
+var x=document.getElementById("number").value;
+if(x>0){
+  for( var i=0;i<x;i++){
+  var input = document.createElement("input");
+ input.setAttribute("type", "text");
+ input.setAttribute("placeholder","Attribute");
+ input.setAttribute("id","title"+i);
+ document.getElementById("div2").appendChild(input);
+ }
+document.getElementById("div2").appendChild(document.createElement("br"))
+var input = document.createElement("button");
+input.innerHTML="Commit";
+input.setAttribute("onclick", "tableshow()");
+document.getElementById("div2").appendChild(input);
+}
+
+}
+
+function tableshow(){
+   var sel = document.getElementById("select2");
+   var b = document.getElementById("name").value;
+   var c = document.getElementById("number").value;
+   var div3=document.getElementById("div3");
+   times=0;
+   row=c;
+   hasdone=1;
+   var option = new Option(b, "2");   
+   div3.innerHTML="";   
+    sel.options.add(option); 
+    document.getElementById('select2').value="2";
+    var tab="<table id='myTable' border='0' >";  
+      for(var i=1;i<=1;i++)
+        {
+            tab+="<tr>";
+            for(var j=0;j<c;j++)
+            {
+                 var d=document.getElementById("title"+j).value
+                tab+="<th>"+d+"</th>";
+            }
+            tab+="</tr>";
+        }
+     tab+="</table>"
+         div3.innerHTML=tab;    
+
+
+
+}
+
+function addrow(){
+  var x=document.getElementById('myTable').insertRow(times+1)
+  for(var i=0;i<=row-1;i++){
+  var y=x.insertCell(i)
+  var f=document.getElementById("add"+i).value;
+  y.innerHTML=f;
+  }
+   times=times+1;
+}
+
+function deleterow(){
+  var mytable=document.getElementById('myTable');
+  for(var i=0,rows=mytable.rows.length; i<rows; i++){
+            var a=0;
+        for(var j=0,cells=mytable.rows[i].cells.length; j<cells; j++){
+            var aa=document.getElementById("delete"+j).value;
+            if(mytable.rows[i].cells[j].innerHTML==aa){
+                a=a+1;
+              }
+          }
+            if(a==cells){
+               document.getElementById("myTable").deleteRow(i);
+             }
+       }
+
+}
+</script>
+</head>
+
+
+
+
+<body>
+<div style="margin: 0 auto; text-align: center">
+ <select style="margin-left: auto; margin-right: auto;" onchange="show(this.value)">
+  <option value="1">SELECT ONE</option>
+  <option value="2">CREATE TABLE</option>
+  <option value="3">ADD ROW</option>
+  <option value="4">DELETE ROW</option>
+  <option value="5">DELETE TABLE</option>
+</select>
+    <div id="div1">
+ </div>
+            <div id="div2">
+     </div>
+<select style="margin-left: auto; margin-right: auto;"id="select2">
+  <option value="1">SELECT (default: last created)</option>
+</select>
+    
+
+         <div id="div3">
+     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+
+</body>
+</html>

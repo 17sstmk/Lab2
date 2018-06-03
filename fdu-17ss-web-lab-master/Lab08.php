@@ -3,49 +3,31 @@
 <!DOCTYPE html>
 <html lang="en">
 
-
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">    
-  
-  <title>Lab08</title>
+    <title>Lab08</title>
       
-   
- <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
-   
- <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 
-  
-  <link rel="stylesheet" href="css/bootstrap.min.css" />
-   
- <link rel="stylesheet" href="css/bootstrap-theme.css" />
-
+    <link rel="stylesheet" href="css/bootstrap.min.css" />
+    <link rel="stylesheet" href="css/bootstrap-theme.css" />
 
 </head>
 
-
 <body>
-   
-   <?php include 'header.inc.php';?>
- <!-- include header here -->
+    <!-- include header here -->
 
-  
-  <!-- Page Content -->
-  
-  <main class="container">
-       
- <div class="row">
+    <!-- Page Content -->
+    <main class="container">
+        <div class="row">
     
-     
-     <?php include 'left.inc.php';?>
-   <!-- include left here -->          
-   
- 
+        <!-- include left here -->          
+    
             <div class="col-md-10">
-             
-   <div class="jumbotron" id="postJumbo">
-                  
-  <h1>Posts</h1>
+                <div class="jumbotron" id="postJumbo">
+                    <h1>Posts</h1>
                     <p>Read other travellers' posts ... or create your own.</p>
                     <p><a class="btn btn-warning btn-lg">Learn more &raquo;</a></p>
                 </div>        

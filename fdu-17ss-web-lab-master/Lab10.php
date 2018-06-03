@@ -1,11 +1,3 @@
-<?php
-//Fill this place
-
-//****** Hint ******
-//connect database and fetch data here
-
-
-?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -39,7 +31,7 @@
             <form action="Lab10.php" method="get" class="form-horizontal">
               <div class="form-inline">
               <select name="continent" class="form-control" id="t1">
-                <option value="0">Select Continent</option>
+                <option value="A">Select Continent</option>
                 <?php
                 $servername="localhost";
                 $username="root";
@@ -56,7 +48,7 @@ $conn->close();
               </select>     
               
               <select name="country" class="form-control" id="t2">
-                <option value="0">Select Country</option>
+                <option value="A">Select Country</option>
                 <?php
                 $servername="localhost";
                 $username="root";
@@ -71,8 +63,8 @@ $conn->close();
 $conn->close();
                 ?>
               </select>    
-              <input type="text"  placeholder="Search title" class="form-control" name=title id="t3">
-              <button onClick="fil()" class="btn btn-primary">Filter</button>
+              <input type="text"  placeholder="Search title" class="form-control" name="title" id="t3">
+              <button type="submit" class="btn btn-primary">Filter</button>
               </div>
             </form>
 
@@ -87,7 +79,30 @@ $conn->close();
                 $password="19980918";
                 $dbname="travel";
                 $conn = new mysqli($servername, $username, $password, $dbname);
-                $sql = "SELECT ImageID,ContinentCode, CountryCodeISO,Title,Path FROM imagedetails";
+                $a4=isset($_GET['continent']) ? $_GET['continent']: "A";
+                $a5=isset($_GET['country']) ? $_GET['country']: "A";
+                $a6=$a4;
+                $a7=$a5;
+                $a8=isset($_GET['title']) ? $_GET['title']: "";           
+                $sql = "SELECT ImageID,ContinentCode, CountryCodeISO,Title,Path FROM imagedetails where ContinentCode='$a6' and CountryCodeISO='$a7' and Title='$a8'";
+                if($a6=="A"){
+                   $sql =str_replace("where ContinentCode='$a6'" ,"",$sql);
+                 }
+                if($a7=="A"){
+                   $sql =str_replace("and CountryCodeISO='$a7'" ,"",$sql);
+                 }
+                if($a8===""){
+                   $sql =str_replace("and Title='$a8'","",$sql); 
+                 }    
+                  $a=strpos($sql,"where");
+                  if($a==""){
+                     $a=999;
+                  }
+                  $b=strpos($sql,"and");
+                  $c=substr($sql,$b,3);
+                  if($c==="and"&&$a>$b){
+                      $sql=substr_replace($sql,"where",$b,3);
+                  }
                 $result = $conn->query($sql);
                 $p=1;
                 while($row = $result->fetch_assoc()) {
@@ -97,25 +112,19 @@ $conn->close();
                 $a3=$row['Path'];
                 $a4=$row['CountryCodeISO'];
                 $a5=$row['Title'];
-                $a6="b".$p;
-                $a7="c".$p;
-                $a8="d".$p;
                 $res=$res."
-          <div id='$p'>
             <li>
-              <a href='detail.php?id=$a1' class='img-responsive' name='$a2' id='$a6'>
-                <img src='images/square-medium/$a3' alt='$a4' id='$a7'>
+              <a href='detail.php?id=$a1' class='img-responsive' name='$a2' >
+                <img src='images/square-medium/$a3' alt='$a4' >
                 <div class='caption'>
                   <div class='blur'></div>
                   <div class='caption-text'>
-                    <p id='$a8'>$a5</p>
+                    <p >$a5</p>
                   </div>
                 </div>
               </a>
             </li>
-           </div>
  ";
-             $p=$p+1;
                   echo $res;      
            }
              $conn->close();
@@ -124,49 +133,6 @@ $conn->close();
 
       
     </main>
-    <script>
- function fil(){
-  var x="<?php echo  $p;?>";
-  var y=x-1;
-  var j;
-  var z=document.getElementById("t1").value;
-  var z1=document.getElementById("t2").value;
-  var z2=document.getElementById("t3").value;
-       for(j=1;j<=y;j++)
- {  
-    document.getElementById(j).style.display="block";
-  }
-      for(j=1;j<=y;j++)
- {  
-  var c=document.getElementById("b"+j).name;
-  var d=document.getElementById("c"+j).alt;
-  var e=document.getElementById("d"+j).innerHTML;
-  if(z==c||z==0){ 
-     }
-  else {
-    document.getElementById(j).style.display="none";
-  }
-    if(z1==d||z1==0){ 
-     }
-  else {
-    document.getElementById(j).style.display="none";
-  }
-    if(z2==e||z2==""){ 
-     }
-  else {
-    document.getElementById(j).style.display="none";
-  }
-
-
-  
-
- } 
-
-
-
-}
-
-</script>
     <footer>
         <div class="container-fluid">
                     <div class="row final">
@@ -174,10 +140,7 @@ $conn->close();
                 <p><a href="#">Home</a> / <a href="#">About</a> / <a href="#">Contact</a> / <a href="#">Browse</a></p>
             </div>            
         </div>
-        
-
     </footer>
-<a onclick="fil()">debug×¨ÓÃ</a>
         <script src="https://code.jquery.com/jquery-2.2.4.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 </body>
